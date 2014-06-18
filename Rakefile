@@ -27,6 +27,9 @@ exclude_paths = [
 PuppetLint.configuration.ignore_paths = exclude_paths
 PuppetSyntax.exclude_paths = exclude_paths
 
+future_parser = ENV['FUTURE_PARSER'] || 'false'
+PuppetSyntax.future_parser = future_parser
+
 desc "Run syntax, lint, and spec tests."
 task :test => [
   :syntax,
