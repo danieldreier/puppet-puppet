@@ -15,12 +15,20 @@
 class puppet::package::repository($devel = false) {
 
   case $::osfamily {
-    Redhat: { $repo_class = 'puppetlabs_yum' }
-    Debian: { $repo_class = 'puppetlabs_apt' }
+    Redhat: {
+      class { 'puppetlabs_yum':
+        enable_devel   => $devel,
+      }
+    }
+    Debian: {
+      apt::source { 'puppetlabs':
+        location   => 'http://apt.puppetlabs.com',
+        repos      => 'main',
+        key        => '4BD6EC30',
+        key_server => 'pgp.mit.edu',
+      }
+    }
     default: { fail("Puppetlabs does not offer a package repository for ${::osfamily}") }
   }
 
-  class { $repo_class:
-    enable_devel   => $devel,
-  }
 }
