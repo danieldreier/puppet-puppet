@@ -17,4 +17,4 @@ dependency 'puppetlabs/apache',           '>= 0.9.0'
 dependency 'gentoo/portage',              '>= 2.1.0'
 dependency 'jfryman/nginx'
 dependency 'puppetlabs/ruby'
-# dependency 'ploperations/rack' # not actually published on forge, needed by server/unicorn.pp
+# dependency 'ploperations/rack' # not actually published on forge, needed by ploperations/unicorn module
