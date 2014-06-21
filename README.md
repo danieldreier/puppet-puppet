@@ -50,3 +50,18 @@ class service::puppet::master($servertype, $ca = false) {
 }
 ```
 
+## Known Issues / concerns
+dependency 'ploperations/rack' # not actually published on forge, needed by
+server/unicorn.pp
+
+ruby::dev is required by manifests/dashboard.pp and indirectly by
+unicorn/manifests/init.pp and ruby::dev tries to install 'ruby-bundler' which
+isn't a valid package on Debian, possibly other distros. Resolved by locking puppetlabs/ruby to 0.1.1.
+
+beaker tests failing on centos-65-x64
+
+unicorn-puppetmaster init scripts do not work on RHEL-type systems
+
+mod_passenger does not seem to exist in native CentOS 6.5 repos, unclear how this ever worked. Issue seems to be with puppetlabs/apache module.
+
+On RHEL-type distros this module only seems to work with the standalone puppetmaster, no passenger or unicorn support
