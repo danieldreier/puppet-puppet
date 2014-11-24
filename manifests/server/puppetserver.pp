@@ -84,6 +84,7 @@ class puppet::server::puppetserver (
     ensure            => present,
     section           => '',
     key_val_separator => '=',
+    quote_char        => '"',
     path              => $puppet::params::server_service_conf,
     setting           => 'JAVA_ARGS',
     notify            => Service[$puppet::params::server_service],
