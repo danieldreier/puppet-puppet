@@ -10,7 +10,7 @@ env:
   - PUPPET_VERSION="~> 3.7.3" FUTURE_PARSER=yes
   global:
   - secure: jrApKcbe1S+UrhiH24Kk+P1fwgTkPMPap+2U77lb3VBtXmR3mAhdBoMMbmC4y+3PADhIMRukzZ2eyQP+Ces/Qwo6rSZPDDc9jAjvToNzlaxNxkyHaO5aZAXyGJRlFaLFerfPiH0A3HEERKAwJOjB0MmMT9CILRf+Wt0N3kFBRbw=
-  - secure: j9zdG4b8D02fPV4s+VfWVsTm/5xm1se1drCdKhhk2/khC/CoZOjY2JP8hTTgb7kUCLJnlDnLeuygxYOF5K3+w4hM4lLWc9US9BF/8RngzdSWqeBwAgsYAwIGB68ch5oaoQoEnvXlxS6YJ+nYhouGaNy5erPZJpRsgHzQGozL24E=
+  - secure: KDtdQRoHvkr4e/tYk3wR+H/lr1DwUdQ5538jJQnpu49UQDXTVRxWQsUCkE+k8ADRKp8dA4q+9vqLBGW+nUgUhPcH71Drdmhyq4x4edbFXNjJ1tfKvira29KpdgseaApKEaYXQh4Gr+zM6GYKc7/OXSWLnS/vd2pr5qLvePWB6Wc=
 after_success:
 - curl -o travis_after_all.py https://raw.githubusercontent.com/dmakhno/travis_after_all/b7172bca92d6dcfcec2a0eacdf14eb5f3a1ad627/travis_after_all.py
 - python travis_after_all.py
