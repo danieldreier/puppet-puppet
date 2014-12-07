@@ -58,7 +58,7 @@ compare_versions() {
   echo "Verifying that version in TRAVIS_TAG matches version in metadata.json"
   sudo apt-get update
   sudo apt-get install -y jq
-  METADATA_VERSION="$(jq -r '."version"' < metadata.json)"
+  METADATA_VERSION="$(jq -r .version < metadata.json)"
   if [ "$TRAVIS_TAG" != "$METADATA_VERSION" ]; then
     echo "Error: Git tag does not equal version in metadata.json! Exiting."
     exit 1
