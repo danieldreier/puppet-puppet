@@ -84,7 +84,7 @@ deploy_module() {
   echo "All Succeded! PUBLISHING..."
   bundle install
   bundle exec rake build
-  bundle exec rake push
+  bundle exec rake module:push
 }
 
 create_blacksmith_auth_file
