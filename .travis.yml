@@ -9,8 +9,8 @@ env:
   - PUPPET_VERSION="~> 3.7.3"
   - PUPPET_VERSION="~> 3.7.3" FUTURE_PARSER=yes
   global:
-  - secure: fbMWa5wQb7Jc44Dy71ouoPoN4ePhKgIvFzjyRhgDDGa1LzMwKF3XBzHDe76V3ArcRjx70kuHqDEFWPpX0tas7qWo33+MjM9rO+Gh0fqrmqA0ufwqJJcv/fSRUeFg5wPgPxXcAxu0VcOV3nm8U+x7Rmap5+PVvRNBDKSuF1vGRxQ=
-  - secure: RrDpmHvF1PD+kOitCL0IB1UBXWXg50ZJ0qVSdvf5A1EsE9C88rw3nOeJfKKMPCjgFFt+JzAZWLuhMVnBuoO9j5eOnmMxFtmtNWC/QKW8LwTfMlBUobP8bUiBW8Z9cxAtLxbFgBcKLwLY5jL1H1wNQWW3vMLonnMgFEeGOpXibRg=
+  - secure: jrApKcbe1S+UrhiH24Kk+P1fwgTkPMPap+2U77lb3VBtXmR3mAhdBoMMbmC4y+3PADhIMRukzZ2eyQP+Ces/Qwo6rSZPDDc9jAjvToNzlaxNxkyHaO5aZAXyGJRlFaLFerfPiH0A3HEERKAwJOjB0MmMT9CILRf+Wt0N3kFBRbw=
+  - secure: j9zdG4b8D02fPV4s+VfWVsTm/5xm1se1drCdKhhk2/khC/CoZOjY2JP8hTTgb7kUCLJnlDnLeuygxYOF5K3+w4hM4lLWc9US9BF/8RngzdSWqeBwAgsYAwIGB68ch5oaoQoEnvXlxS6YJ+nYhouGaNy5erPZJpRsgHzQGozL24E=
 after_success:
 - curl -o travis_after_all.py https://raw.githubusercontent.com/dmakhno/travis_after_all/b7172bca92d6dcfcec2a0eacdf14eb5f3a1ad627/travis_after_all.py
 - python travis_after_all.py
