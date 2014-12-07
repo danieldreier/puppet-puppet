@@ -1,26 +1,21 @@
 language: ruby
 before_install: rm Gemfile.lock || true
 rvm:
-#- 1.9.3
-#- 2.0.0
 - 2.1.3
 script:
 - bundle exec rake test
 env:
   matrix:
-#  - PUPPET_VERSION="~> 3.4.0"
   - PUPPET_VERSION="~> 3.7.3"
   - PUPPET_VERSION="~> 3.7.3" FUTURE_PARSER=yes
-#  - PUPPET_VERSION="~> 3.7.3" STRINGIFY_FACTS=no
-#  - PUPPET_VERSION="~> 3.7.3" ORDERING=random
   global:
-  - secure: RxS0OUWE5nnxTyNXklrLJ4e3kvsPGSP0CWIimXHH89ksE7uNh6M8BJYl6e0wpVkaZI3X12JbdVXEIaCHaecBBtus/1Ki6l5121hMGerGY9eOAUa1aO+Ka80Orx42+R40yVX9K/Ereu2BAwWrFrwr37xQBEmBmBBIHm6Jchj8hSE=
-  - secure: hI1XJbePSngauUtN+6cszTneMtYwlWuLnG2RQMXt+Lzx2z9trmPP7DOTMF7lwViQYyFk9ie4q/usPZFFUdSFVflqe/F1E83w2odDY/Trvy8eE6cLJwdQ5S6FKLy+41PtAwyFKikNZ5nNE3Fcu3OZEggFmiBKU+Bq1acYmxZkfB4=
+  - secure: fbMWa5wQb7Jc44Dy71ouoPoN4ePhKgIvFzjyRhgDDGa1LzMwKF3XBzHDe76V3ArcRjx70kuHqDEFWPpX0tas7qWo33+MjM9rO+Gh0fqrmqA0ufwqJJcv/fSRUeFg5wPgPxXcAxu0VcOV3nm8U+x7Rmap5+PVvRNBDKSuF1vGRxQ=
+  - secure: RrDpmHvF1PD+kOitCL0IB1UBXWXg50ZJ0qVSdvf5A1EsE9C88rw3nOeJfKKMPCjgFFt+JzAZWLuhMVnBuoO9j5eOnmMxFtmtNWC/QKW8LwTfMlBUobP8bUiBW8Z9cxAtLxbFgBcKLwLY5jL1H1wNQWW3vMLonnMgFEeGOpXibRg=
 after_success:
 - curl -o travis_after_all.py https://raw.githubusercontent.com/dmakhno/travis_after_all/b7172bca92d6dcfcec2a0eacdf14eb5f3a1ad627/travis_after_all.py
 - python travis_after_all.py
 - export $(cat .to_export_back)
-- ./travis/deploy.sh
+- "./travis/deploy.sh"
 after_failure:
 - python travis_after_all.py
 - export $(cat .to_export_back)
