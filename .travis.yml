@@ -6,26 +6,45 @@ rvm:
   - 1.9.3
   - 2.0.0
   - 2.1.3
-script: bundle exec rake test
+script:
+  - curl -o travis_after_all.py https://raw.github.com/dmakhno/travis_after_all/master/travis_after_all.py
+  - bundle exec rake test
 env:
-  - PUPPET_VERSION="~> 3.1.0"
-  - PUPPET_VERSION="~> 3.2.0"
-  - PUPPET_VERSION="~> 3.3.0"
   - PUPPET_VERSION="~> 3.4.0"
   - PUPPET_VERSION="~> 3.7.3"
   - PUPPET_VERSION="~> 3.7.3" FUTURE_PARSER=yes
   - PUPPET_VERSION="~> 3.7.3" STRINGIFY_FACTS=no
-  - PUPPET_VERSION="~> 3.7.3" STRICT_VARIABLES=yes
   - PUPPET_VERSION="~> 3.7.3" ORDERING=random
-matrix:
-  exclude:
-  - rvm: 2.0.0
-    env: PUPPET_VERSION="~> 3.1.0"
-  - rvm: 2.1.3
-    env: PUPPET_VERSION="~> 3.1.0"
-  - rvm: 2.1.3
-    env: PUPPET_VERSION="~> 3.2.0"
-  - rvm: 2.1.3
-    env: PUPPET_VERSION="~> 3.3.0"
-  allow_failures:
-    - env: PUPPET_VERSION="~> 3.7.3" STRICT_VARIABLES=yes
+
+after_success:
+#  - if [[ "$TRAVIS_BRANCH" != "master" ]]; then echo "Deployments are only done for the master branch. Current branch is $TRAVIS_BRANCH"; exit 0; fi
+  - python travis_after_all.py
+  - export $(cat .to_export_back)
+  - |
+      if [ "$BUILD_LEADER" = "YES" ]; then
+        if [ "$BUILD_AGGREGATE_STATUS" = "others_succeeded" ]; then
+          if [ -n "$TRAVIS_TAG" ]; then
+            echo "detected tag: ${TRAVIS_TAG}"
+            echo "All Succeded! PUBLISHING..."
+            rake build
+            rake push
+          else
+            echo "no tag detected, not deploying"
+          fi
+        else
+          echo "Some Failed"
+        fi
+      fi
+after_failure:
+  - python travis_after_all.py
+  - export $(cat .to_export_back)
+  - |
+      if [ "$BUILD_LEADER" = "YES" ]; then
+        if [ "$BUILD_AGGREGATE_STATUS" = "others_failed" ]; then
+          echo "All Failed"
+        else
+          echo "Some Failed"
+        fi
+      fi
+after_script:
+  - echo leader=$BUILD_LEADER status=$BUILD_AGGREGATE_STATUS
