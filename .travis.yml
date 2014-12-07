@@ -25,6 +25,7 @@ after_success:
           if [ -n "$TRAVIS_TAG" ]; then
             echo "detected tag: ${TRAVIS_TAG}"
             echo "All Succeded! PUBLISHING..."
+            bundle install
             rake build
             rake push
           else
