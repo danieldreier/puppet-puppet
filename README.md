@@ -1,5 +1,6 @@
 # Puppet-puppet
-[![Build Status](https://travis-ci.org/puppetlabs-operations/puppet-puppet.svg?branch=master)](https://travis-ci.org/puppetlabs-operations/puppet-puppet)
+[![Build Status](https://travis-ci.org/puppetlabs-operations/puppet-puppet.svg?branch=master)](https://travis-ci.org/puppetlabs-operations/puppet-puppet) [![Puppet
+Forge](http://img.shields.io/puppetforge/v/ploperations/puppet.svg)](https://forge.puppetlabs.com/ploperations/puppet)
 
 100% free range, organic, pesticide free Puppet module for managing Puppet.
 
